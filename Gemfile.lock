@@ -126,7 +126,7 @@ GIT
       valkyrie (~> 2, >= 2.1.1)
 
 GIT
-  remote: https://github.com/scientist-softserv/iiif_print.git
+  remote: https://github.com/notch8/iiif_print.git
   revision: eb320b1c454f0219d9e17fd12fd2b525770123b2
   branch: main
   specs:

@@ -158,7 +158,7 @@ Analytics is comprised of two aspects:
 - *Sending* data to the analytics end-point
 - *Fetching* and reporting data from the analytics end-point
 
-For a more exhaustive discusion, see [Resolve Sending Google Analytics Data for Tenant and Proprietor · Issue #910 · scientist-softserv/palni-palci](https://github.com/scientist-softserv/palni-palci/issues/910).
+For a more exhaustive discusion, see [Resolve Sending Google Analytics Data for Tenant and Proprietor · Issue #910 · notch8/palni-palci](https://github.com/notch8/palni-palci/issues/910).
 
 ### Google
 
