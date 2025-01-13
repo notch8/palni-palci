@@ -10,7 +10,7 @@
 #       first does all of the postgres and then does one (ideally single) fedora change.  It is
 #       not bullet proof but does hopefully improve the chances of data integrity.
 #
-# @see https://github.com/scientist-softserv/palni-palci/issues/633
+# @see https://github.com/notch8/palni-palci/issues/633
 class WorkAuthorization < ActiveRecord::Base # rubocop:disable ApplicationRecord
   class WorkNotFoundError < StandardError
     def initialize(user:, work:)

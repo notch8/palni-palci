@@ -14,7 +14,7 @@ module Hyku
     # @return [String] the URL to use for searching across all tenants.
     #
     # @see .cross_tenant_search_host
-    # @see https://github.com/scientist-softserv/palni-palci/issues/947
+    # @see https://github.com/notch8/palni-palci/issues/947
     def self.cross_tenant_search_url
       # Do not include the scheme (e.g. http or https) but instead let the browser apply the correct
       # scheme.
@@ -123,7 +123,7 @@ module Hyku
       ##
       # This needs to be in the after initialize so that the IiifPrint gem can do it's decoration.
       #
-      # @see https://github.com/scientist-softserv/iiif_print/blob/9e7837ce4bd08bf8fff9126455d0e0e2602f6018/lib/iiif_print/engine.rb#L54 Where we do the override.
+      # @see https://github.com/notch8/iiif_print/blob/9e7837ce4bd08bf8fff9126455d0e0e2602f6018/lib/iiif_print/engine.rb#L54 Where we do the override.
       Hyrax::Actors::FileSetActor.prepend(IiifPrint::TenantConfig::FileSetActorDecorator)
 
       Hyrax::WorkShowPresenter.prepend(IiifPrint::TenantConfig::WorkShowPresenterDecorator)

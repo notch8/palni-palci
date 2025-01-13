@@ -8,7 +8,7 @@ RUN wget -O - https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemal
     make && \
     make install
 
-FROM ghcr.io/scientist-softserv/dev-ops/samvera:f71b284f as hyku-base
+FROM ghcr.io/notch8/dev-ops/samvera:f71b284f as hyku-base
 
 COPY --chown=1001:101 $APP_PATH/Gemfile* /app/samvera/hyrax-webapp/
 RUN sh -l -c " \

@@ -7,7 +7,7 @@ x-app: &app
     args:
       - EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync exiftool
       - HYKU_BULKRAX_ENABLED=true
-  image: ghcr.io/scientist-softserv/palni-palci:${TAG:-latest}
+  image: ghcr.io/notch8/palni-palci:${TAG:-latest}
   env_file:
     - .env
   # NOTE: all common env variables moved to .env
@@ -29,9 +29,9 @@ x-app-worker: &app-worker
       - EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync exiftool
       - HYKU_BULKRAX_ENABLED=true
     cache_from:
-      - ghcr.io/scientist-softserv/palni-palci:latest
-      - ghcr.io/scientist-softserv/palni-palci/worker:latest
-  image: ghcr.io/scientist-softserv/palni-palci/worker:${TAG:-latest}
+      - ghcr.io/notch8/palni-palci:latest
+      - ghcr.io/notch8/palni-palci/worker:latest
+  image: ghcr.io/notch8/palni-palci/worker:${TAG:-latest}
   command: sh -l -c 'bundle && bundle exec sidekiq'
   depends_on:
     check_volumes:
@@ -85,7 +85,7 @@ services:
       timeout: "8s"
 
   solr:
-    image: ghcr.io/scientist-softserv/palni-palci/solr:${TAG:-latest}
+    image: ghcr.io/notch8/palni-palci/solr:${TAG:-latest}
     build:
       context: solr
       dockerfile: Dockerfile
