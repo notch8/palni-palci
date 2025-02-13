@@ -68,7 +68,7 @@ extraEnvVars: &envVars
   - name: DB_ADAPTER
     value: postgresql
   - name: DB_HOST
-    value: postgres-cluster-alpha-ha.postgres.svc.cluster.local
+    value: acid-postgres-cluster-delta.postgres.svc.cluster.local
   - name: DB_NAME
     value: pals-production-hyku
   - name: DB_PASSWORD
@@ -398,7 +398,7 @@ fits:
   subPath: /fits
 
 externalPostgresql:
-  host: postgres-cluster-alpha-ha.postgres.svc.cluster.local
+  host: acid-postgres-cluster-delta.postgres.svc.cluster.local
   username: main
   password: $DB_PASSWORD
   database: pals-production-hyku
