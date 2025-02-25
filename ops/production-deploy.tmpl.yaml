@@ -203,6 +203,9 @@ worker:
       cpu: "150m"
   extraVolumeMounts: *volMounts
   extraEnvVars: *envVars
+  extraEnvFrom:
+    - configMapRef:
+        name: worker-env
   podSecurityContext:
     runAsUser: 1001
     runAsGroup: 101
@@ -220,14 +223,34 @@ workerAuxiliary:
     requests:
       memory: "4Gi"
       cpu: "2"
-  extraEnvVars:
-    - name: AUXILIARY_WORKER_THREAD_COUNT
-      value: "1"
-    - name: SIDEKIQ_CONFIG
-      value: "config/sidekiq_auxiliary.yml"
+  extraEnvVars: *envVars
+  extraEnvFrom:
+    - configMapRef:
+        name: auxilary-worker-env
 
 extraDeploy:
   - |-
+      ---
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: worker-env
+        labels:
+          {{- include "hyrax.labels" . | nindent 4 }}
+      data:
+        WORKER_CONCURENCY: "5"
+        WORKER_ARGS: -q default -q import -q export
+      ---
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: auxiliary-worker-env
+        labels:
+          {{- include "hyrax.labels" . | nindent 4 }}
+      data:
+        WORKER_CONCURENCY: "1"
+        WORKER_ARGS: -q auxiliary -q default -q import -q export
+      ---
       apiVersion: apps/v1
       kind: Deployment
       metadata:

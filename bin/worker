@@ -4,13 +4,9 @@ if ENV['GOOGLE_OAUTH_PRIVATE_KEY_VALUE'] && !ENV['GOOGLE_OAUTH_PRIVATE_KEY_VALUE
 end
 
 if ENV['DATABASE_URL'] && !ENV['DATABASE_URL'].empty?
-  ENV['DATABASE_URL'] = ENV['DATABASE_URL'].gsub('pool=5', 'pool=30')
+  ENV['DATABASE_URL'] = ENV['DATABASE_URL'].gsub('pool=5', "pools=#{ENV.fetch('WORKER_CONCURENCY'), 30}")
 else
   puts 'DATABASE_URL not set, no pool change needed'
 end
 
-if ENV['SIDEKIQ_CONFIG']
-  exec "echo $DATABASE_URL && bundle exec sidekiq -C #{ENV['SIDEKIQ_CONFIG']}"
-else
-  exec "echo $DATABASE_URL && bundle exec sidekiq"
-end
+exec "echo $DATABASE_URL && RAILS_MAX_THREADS=$WORKER_CONCURENCY bundle exec sidekiq $WORKER_ARGS"
